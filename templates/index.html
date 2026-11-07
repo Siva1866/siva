@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Scribble to Digital Converter{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-4 fw-bold text-primary mb-3">Convert <span class="text-warning">Hand-Drawn Sketches</span> into Digital Art</h1>
+                <p class="lead text-muted">AI-powered image processing and machine learning for clean digital conversion.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-primary">
+                    <div class="card-body text-center p-5">
+                        <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                        <h3 class="card-title">Image Upload</h3>
+                        <p class="card-text text-muted">Upload JPG, JPEG, or PNG sketches. Our system preprocesses, denoises, and converts them into clean digital line drawings.</p>
+                        {% if 'user_id' in session %}
+                            <a href="{{ url_for('upload') }}" class="btn btn-primary px-4">Upload Image</a>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" class="btn btn-primary px-4">Login to Upload</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-primary">
+                    <div class="card-body text-center p-5">
+                        <i class="fas fa-pencil-ruler fa-3x text-primary mb-3"></i>
+                        <h3 class="card-title">Draw on Canvas</h3>
+                        <p class="card-text text-muted">Draw directly on an interactive canvas with pencil, eraser, brush sizes, undo, and download options.</p>
+                        {% if 'user_id' in session %}
+                            <a href="{{ url_for('draw') }}" class="btn btn-primary px-4">Open Canvas</a>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" class="btn btn-primary px-4">Login to Draw</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-cogs me-2"></i>How It Works</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center g-4">
+                            <div class="col-md-3"><div class="badge bg-light text-primary p-3 rounded-circle d-inline-block mb-3"><i class="fas fa-image fa-2x"></i></div><h6>Upload</h6><p class="small text-muted">Upload your hand-drawn sketch</p></div>
+                            <div class="col-md-3"><div class="badge bg-light text-primary p-3 rounded-circle d-inline-block mb-3"><i class="fas fa-filter fa-2x"></i></div><h6>Preprocess</h6><p class="small text-muted">Grayscale, denoise, thresholding</p></div>
+                            <div class="col-md-3"><div class="badge bg-light text-primary p-3 rounded-circle d-inline-block mb-3"><i class="fas fa-border-all fa-2x"></i></div><h6>Detect</h6><p class="small text-muted">Edge detection & contours</p></div>
+                            <div class="col-md-3"><div class="badge bg-light text-primary p-3 rounded-circle d-inline-block mb-3"><i class="fas fa-brain fa-2x"></i></div><h6>Classify</h6><p class="small text-muted">ML shape recognition</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

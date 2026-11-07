@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload & Convert - Scribble to Digital Converter{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-cloud-upload-alt me-2"></i>Upload Sketch Image</h5>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST" enctype="multipart/form-data" id="uploadForm">
+                    <div class="mb-3">
+                        <label class="form-label">Select Image (JPG, JPEG, PNG)</label>
+                        <input type="file" name="image" class="form-control" accept="image/jpeg,image/png,image/jpg" required id="imageInput">
+                        <div class="form-text">Max file size: 16MB</div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <img id="preview" src="#" alt="Preview" class="img-fluid rounded shadow-sm d-none" max-width="100%" max-height="300px">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2 mt-3" id="submitBtn">Upload & Convert</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('imageInput').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const preview = document.getElementById('preview');
+                preview.src = ev.target.result;
+                preview.classList.remove('d-none');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+{% endblock %}

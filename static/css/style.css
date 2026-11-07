@@ -1,0 +1,96 @@
+:root {
+    --primary-purple: #6a5acd;
+    --primary-blue: #4a90e2;
+    --accent-purple: #8e44ad;
+    --light-bg: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.navbar-brand span {
+    color: #ffc107;
+}
+
+.bg-primary {
+    background: linear-gradient(135deg, var(--primary-purple), var(--primary-blue)) !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-purple), var(--primary-blue));
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-purple), var(--primary-blue));
+    transform: translateY(-1px);
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.shadow-inner {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.canvas-wrapper {
+    background: #fff;
+    border-radius: 8px;
+}
+
+.form-range::-webkit-slider-thumb {
+    background: var(--primary-purple);
+}
+
+.form-range::-moz-range-thumb {
+    background: var(--primary-purple);
+}
+
+.tool-btn {
+    border-radius: 8px;
+}
+
+.tool-btn.active {
+    background: var(--primary-purple);
+    color: #fff;
+    border-color: var(--primary-purple);
+}
+
+.footer {
+    font-size: 0.9rem;
+}
+
+.alert {
+    border-radius: 8px;
+}
+
+.img-fluid {
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    canvas#drawCanvas {
+        width: 100%;
+        height: auto;
+    }
+}

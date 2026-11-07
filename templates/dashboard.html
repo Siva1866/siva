@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Scribble to Digital Converter{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-tachometer-alt me-2 text-primary"></i>Dashboard</h2>
+    <a href="{{ url_for('upload') }}" class="btn btn-primary"><i class="fas fa-plus me-1"></i>New Conversion</a>
+</div>
+
+{% if conversions %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for c in conversions %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary">{{ c['detected_shape'] or 'unknown' }}</span>
+                <small class="text-muted">{{ c['created_at'][:16] }}</small>
+            </div>
+            <div class="card-body">
+                <h6 class="card-title">{{ c['original_filename'] }}</h6>
+                <p class="card-text text-muted small">ML confidence: {{ '%.1f'|format(c['confidence'] * 100) }}%</p>
+            </div>
+            <div class="card-footer d-flex gap-2">
+                <a href="{{ url_for('download', conv_id=c['id']) }}" class="btn btn-sm btn-outline-primary flex-fill"><i class="fas fa-download me-1"></i>Download</a>
+                <form action="{{ url_for('delete', conv_id=c['id']) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this conversion?')">
+                    <button type="submit" class="btn btn-sm btn-outline-danger flex-fill"><i class="fas fa-trash me-1"></i>Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-5">
+    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+    <h4>No conversions yet</h4>
+    <p class="text-muted">Start by uploading a sketch or drawing on the canvas.</p>
+    <a href="{{ url_for('upload') }}" class="btn btn-primary">Upload Image</a>
+</div>
+{% endif %}
+{% endblock %}
